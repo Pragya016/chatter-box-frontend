@@ -1,0 +1,108 @@
+import React, { useEffect, useState } from 'react'
+import SentimentSatisfiedAltIcon from '@mui/icons-material/SentimentSatisfiedAlt';
+import { IconButton } from '@mui/material'
+import { getEmail, getTimestamp } from '../global.functions';
+import { io } from 'socket.io-client';
+import SendIcon from '@mui/icons-material/Send';
+import styles from '../css/chat.input.module.css';
+
+export default function ChatInput(props) {
+
+    const [isTyping, setIsTyping] = useState(false);
+    const [value, setValue] = useState(false);
+    const [socket, setSocket] = useState(null);
+
+    useEffect(() => {
+        const newSocket = io(process.env.REACT_APP_BACKEND_URL);
+        setSocket(newSocket);
+        newSocket.on('typing', handleTyping);
+        newSocket.on('broadcast_message', handleBroadcastMessage);
+
+        return () => {
+            if (newSocket) {
+                newSocket.off('broadcast_message', handleBroadcastMessage);
+                newSocket.off('typing', handleTyping);
+                newSocket.disconnect();
+            }
+        }
+        }, [])
+
+    function handleBroadcastMessage(data) {
+        const messageData = {
+        username: data.name,
+        message: data.message,
+        timestamp: data.timestamp
+        };
+
+        const messageStyle = {
+        messageContainer: styles.recievedMessageContainer,
+        messageBox: styles.recievedMessageBox,
+        username: styles.recievedMessageUsername,
+        message: styles.recievedMessage,
+        time: styles.recievedMessageTime
+        };
+
+        props.onBroadcast(messageData, messageStyle);
+    }
+
+    function handleSendMessage(e) {
+        e.preventDefault();
+
+        if (socket && value.trim() !== '') {
+        const email = getEmail();
+        const timestamp = getTimestamp();
+
+        const userData = {
+            username: 'You',
+            message: value,
+            timestamp
+        };
+
+        const userStyle = {
+            messageContainer: styles.sentMessageContainer,
+            messageBox: styles.sentMessageBox,
+            username: styles.sentMessageUsername,
+            message: styles.sentMessage,
+            time: styles.sentMessageTime
+        };
+
+        props.OnSend(userData, userStyle);
+
+        socket.emit('send_message', { email, message: value, time: timestamp });
+
+        setValue('');
+        }
+    }
+
+    function handleTyping() {
+        setIsTyping(true);
+
+        setTimeout(() => {
+        setIsTyping(false);
+        }, 1000);
+    }
+
+    function handleChange(e) {
+        setValue(e.target.value);
+        socket.emit('typing');
+    }
+
+  return (
+        <form action="" onSubmit={handleSendMessage} id={styles.form}>
+            <IconButton style={{position:'absolute'}}>
+                <SentimentSatisfiedAltIcon fontSize='small'/>
+            </IconButton>
+        <input
+          type="text"
+          placeholder="Send a message..."
+          onChange={handleChange}
+          value={value}
+          id={styles.inputField}
+            />
+            {/* <EmojiPicker/> */}
+        <IconButton type="submit" id={styles.sendBtn}>
+              <SendIcon />
+        </IconButton>
+      </form>
+  )
+}

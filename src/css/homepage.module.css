@@ -1,0 +1,70 @@
+.container {
+    height: 100%;
+    width: 100%;
+    margin: auto;
+    box-sizing: border-box;
+    display: flex;
+}
+
+#leftSide {
+    background-color: white;
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: flex-end;
+    width: 25%;
+    color: grey;
+    border-right: 1px solid lightgrey;
+}
+
+#heading {
+    padding: 10px;
+    color: black;
+    box-sizing: border-box;
+    border: 2px solid lightgrey;
+    width: 90%;
+    margin: 10px auto;
+    border-radius: 15px;
+}
+
+#rightSide {
+    display: flex;
+    flex-direction: column;
+    width: 75%;
+}
+
+#users {
+    padding: 10px;
+}
+
+#chatBox {
+    display: flex;
+    flex-direction: column;
+    color: white;
+}
+
+#form {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 35px;
+    padding: 0px 5px 8px;
+    box-sizing: border-box;
+    margin: 12px 0;
+}
+
+#btn {
+    position: relative;
+    top: 5px;
+}
+
+@media screen and (max-width: 580px) {
+    #leftSide {
+        background-color: red;
+        display: none;
+    }
+
+    #rightSide {
+        width: 100%;
+    }
+}

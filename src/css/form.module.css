@@ -1,0 +1,12 @@
+#groupsIcon {
+    background-color: lightgrey;
+    padding: 2px;
+    border-radius: 50px;
+    position: relative;
+    top: 5px;
+    font-size: 2rem;
+}
+
+.textField input{
+    color: lightgrey;
+}

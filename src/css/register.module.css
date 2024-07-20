@@ -1,0 +1,77 @@
+#container {
+    background-color: white;
+    margin: auto;
+    width: 45%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 25px;
+    padding: 10px 0 15px 0;
+}
+
+#heading {
+    text-align: center;
+    color: black;
+}
+
+#formContainer {
+    margin: auto;
+    width: 90%;
+    /* border: 2px solid lightgrey; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 15px;
+    /* padding-bottom: 15px; */
+}
+
+.inputBox {
+    background: transparent;
+    width: 80%;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    display: flex ;
+    align-items: center;
+    justify-content: center;
+}
+
+.inputField {
+    width: 100%;
+    display: flex;
+}
+
+#btn {
+    width: 80%;
+    margin-top: 50px;
+    border-radius: 15px;
+}
+
+
+/*-------------- for screens between - 320px to 480px --------------*/
+
+@media screen and (min-width: 320px) and (max-width: 480px) {
+    #container {
+        width: 85%;
+    }
+}
+
+/* for screens between - 481px to 768px */
+
+@media screen and (min-width: 481px) and (max-width: 768px) {
+    #container {
+        width: 75%;
+    }
+}
+
+/* for screens between - 769px to 1024px */
+
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+    #container {
+        width: 55%;
+    }
+}

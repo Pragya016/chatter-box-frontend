@@ -1,0 +1,29 @@
+.personIcon {
+    color: grey;
+    background: white;
+    padding: 8px;
+    border-radius: 50px;
+    margin-right: 5px;
+    font-size: 1.8rem !important;
+}
+
+#users {
+    padding: 10px;
+    height: 90vh;
+    overflow: scroll;
+}
+
+.user {
+    cursor: default;
+    display: flex;
+    align-items: center;
+    font-weight: 600;
+    background: whitesmoke;
+    padding: 15px;
+    border-radius: 20px;
+    margin: 8px 0;
+}
+
+.username {
+    font-size: 0.9rem;
+}

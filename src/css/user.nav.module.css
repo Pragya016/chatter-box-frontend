@@ -1,0 +1,39 @@
+#userNav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: white;
+    position: fixed;
+    top: 0;
+    width: 75%;
+    color: black;
+    box-sizing: border-box;
+    padding: 0 10px 0 10px;
+}
+
+#groupIconContainer {
+    height: 50px;
+    width: 50px;
+    border-radius: 100%;
+    margin-right: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: lightgrey;
+}
+
+#leftSide{
+    display: flex;
+    align-items: center;
+    justify-content: baseline;
+}
+
+#logoutBtn {
+    font-size: 2rem;
+}
+
+@media screen and (max-width: 580px) {
+    #userNav {
+        width: 100%;
+    }
+}
