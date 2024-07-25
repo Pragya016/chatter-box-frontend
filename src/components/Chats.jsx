@@ -17,8 +17,6 @@ export default function Chats(props) {
   useEffect(() => {
     const newSocket = io(process.env.REACT_APP_BACKEND_URL);
     setSocket(newSocket);
-
-    newSocket.on('connect', () => {
       // this will display all previous chats
       newSocket.emit('load_chats')
       newSocket.on('load_previous_chats', handleLoadChats)
@@ -29,7 +27,7 @@ export default function Chats(props) {
       newSocket.on('broadcast_message', handleBroadcastMessage);
       newSocket.on('invalid_user', ({ message }) => toast.error(message));
       newSocket.on('user_disconnect', (name) => handleNotify({name, message : 'has left the chat.'}));
-    });
+
     return () => {
       if (newSocket) {
         newSocket.off('notify', handleNotify);
@@ -129,6 +127,9 @@ export default function Chats(props) {
       createChat(userData, userStyle);
 
       socket.emit('send_message', { email, message: value, time: timestamp });
+      
+      // set isTyping to false so that typing indicator hides when user finally sends the message
+      setIsTyping(false);
 
       setValue('');
       scrollToBottom();
@@ -140,7 +141,7 @@ export default function Chats(props) {
 
     setTimeout(() => {
       setIsTyping(false);
-    }, 1000);
+    }, 3000);
   }
 
   function handleChange(e) {

@@ -20,7 +20,6 @@ export default function Login() {
     const newSocket = io(process.env.REACT_APP_BACKEND_URL);
     setSocket(newSocket);
     
-    newSocket.on('connect', () => {
       newSocket.on('login_successful', (token) => {
       if (!token) {
       toast.error('Something went wrong! Please try again later.');
@@ -41,11 +40,11 @@ export default function Login() {
       });
 
       newSocket.on('loginFailure', ({message}) => toast.error(message));
-    });
 
     return () => {
       newSocket.off('login_successful');
       newSocket.off('loginFailure');
+      newSocket.disconnect();
     };
   }, []);
 

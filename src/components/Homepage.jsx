@@ -10,16 +10,14 @@ export default function Homepage() {
 
   useEffect(() => {
     const newSocket = io(process.env.REACT_APP_BACKEND_URL);
-    newSocket.on('connect', () => {
       // this will load the homepage by sending the list of all the users
       newSocket.emit('load_home');
       newSocket.on('load_users', handleLoadUsers)
     
-      return () => {
+    return () => {
+        newSocket.off('load_users');
         newSocket.disconnect()
       }
-
-    });
   }, []);
 
   useEffect(() => {}, [users])

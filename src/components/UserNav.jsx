@@ -23,6 +23,12 @@ export default function UserNav() {
       navigate('/login')
       window.location.reload();
     })
+
+    return () => {
+      newSocket.off('logout_failure')
+      newSocket.off('logout_successful')
+      newSocket.disconnect();
+    }
   }, [])
 
   function handleLogout() {

@@ -12,14 +12,13 @@ export default function Form(props) {
     const socket = useContext(SocketContext);
 
     useEffect(() => {
-        socket.on('connect', () => {
-            // if group addition fails
-            socket.on('group_addition_failure', ({ message }) => {
-                toast.error(message);
-            });
+        // if group addition fails
+        socket.on('group_addition_failure', ({ message }) => {
+            toast.error(message);
         });
 
         return () => {
+            socket.off('group_addition_failure');
             socket.disconnect();
         };
     }, [socket]);

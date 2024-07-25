@@ -30,6 +30,7 @@ export default function Register() {
     const handleDuplicateEmail = ({ message }) => {
       toast.error(message);
     };
+
     const newSocket = io(process.env.REACT_APP_BACKEND_URL);
     setSocket(newSocket);
     newSocket.on('registeration_successful', handleRegisterSuccesful);
@@ -40,6 +41,7 @@ export default function Register() {
       newSocket.off('registeration_successful', handleRegisterSuccesful);
       newSocket.off('registerationFailure', handleRegisterFailure);
       newSocket.off('duplicate_email', handleDuplicateEmail);
+      newSocket.disconnect();
     };
   }, [navigate]);
 
