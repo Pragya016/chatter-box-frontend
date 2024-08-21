@@ -68,7 +68,7 @@ export default function Login() {
 
   return (
     <div id={styles.container}>
-      <h1 id={styles.heading}>Sign in</h1>
+      <h1 id={styles.heading}>Sign In</h1>
       <form onSubmit={handleSubmit} id={styles.form}>
         <Box sx={{ display: 'flex', alignItems: 'flex-end' }} className={styles.inputBox}>
           <AccountCircle sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
