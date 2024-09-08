@@ -68,7 +68,7 @@ export default function Register() {
   return (
     <>
       <div id={styles.container}>
-        <h1 id={styles.heading}>Sign Up</h1>
+        <h1 id={styles.heading}>Register</h1>
         <form onSubmit={handleSubmit} id={styles.formContainer}>
           <Box sx={{ display: 'flex', alignItems: 'flex-end' }} className={styles.inputBox}>
             <AccountCircle sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
@@ -122,6 +122,7 @@ export default function Register() {
           </Button>
         </form>
         <p style={{color : 'grey'}}>Already have an account? <Link to="/login" style={{ color: '#1876D3' }}>Login</Link></p>
+      <p id={styles.loginCred}>Login credentials are mentioned on the login page.</p>
       </div>
       <ToastContainer
           autoClose="1500"

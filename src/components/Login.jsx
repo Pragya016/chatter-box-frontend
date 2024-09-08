@@ -68,7 +68,7 @@ export default function Login() {
 
   return (
     <div id={styles.container}>
-      <h1 id={styles.heading}>Sign In</h1>
+      <h1 id={styles.heading}>Login</h1>
       <form onSubmit={handleSubmit} id={styles.form}>
         <Box sx={{ display: 'flex', alignItems: 'flex-end' }} className={styles.inputBox}>
           <AccountCircle sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
@@ -100,6 +100,8 @@ export default function Login() {
       <p style={{color : 'grey'}}>
         Don't have an account? <Link to="/register" style={{ color: '#1876d3'}}>Create Account</Link>
       </p>
+      <p className={styles.loginCred}>Email : abc@example.com</p>
+      <p className={styles.loginCred}>Password : abc</p>
       <ToastContainer
         autoClose="1500"
         newestOnTop
